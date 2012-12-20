@@ -1,0 +1,50 @@
+<html>
+<head>
+	<title>WCF REST Interfaces</title>
+	<link rel="stylesheet" type="text/css" href="http://cdn.stuartthompson.net/styles/simple/core.css" />
+</head>
+<body>
+	<h1>WCF REST Interfaces</h1>
+	<p>
+		In WCF, a REST interface is implemented using the WebInvoke and OperationContract attributes.
+	</p>
+
+	<h2>WebInvoke Attribute</h2>
+	<p>
+		The WebInvoke attribute specifies how the REST operation should appear within the service interface.<br/>
+		BodyStyle = WebMessageBodyStyle.Wrapped is used when either the request or response contain multiple root level parameters (typically on PUT, POST, DELETE). With simple GETs this is not necessary.
+	</p>
+	<pre>
+	[WebInvoke(
+	&nbsp;&nbsp;&nbsp;&nbsp;BodyStyle = BODY_STYLE (optional)
+	&nbsp;&nbsp;&nbsp;&nbsp;Method = "GET | PUT | POST | DELETE"
+	&nbsp;&nbsp;&nbsp;&nbsp;UriTemplate = "OPERATION/PATHVARS | OPERATION?QUERYSTRING" )
+	&nbsp;&nbsp;&nbsp;&nbsp;Description("Description of operation here.")]
+	</pre>
+
+	<h2>GET Operations</h2>
+	<p>
+		Analogous to a CRUD Read operation, GET uses the query-string and URI path for parameter transmission.
+	</p>
+	<img border="0" src="wcf-rest-interfaces-get-operation.png" alt="WCF GET Operation Example" />
+
+	<h2>POST Operations</h2>
+	<p>
+		Analogous to a CRUD Create operation, POST uses only the request body for parameter transmission.
+	</p>
+	<img border="0" src="wcf-rest-interfaces-post-operation.png" alt="WCF POST Operation Example" />
+
+	<h2>DELETE Operations</h2>
+	<p>
+		Analogous to a CRUD Delete operation, DELETE uses both the query-string/URI path as well as the request body for parameter transmission.<br/>
+		<i>Note how the customerId is passed as part of the UriTemplate, but the correlationId is not.</i>
+	</p>
+	<img border="0" src="wcf-rest-interfaces-delete-operation.png" alt="WCF DELETE Operation Example" />
+
+	<h2>PUT Operations</h2>
+	<p>
+		Similar to a DELETE, PUT uses both the query-string/URI path and the request body for parameter transmission.
+	</p>
+	<img border="0" src="wcf-rest-interfaces-put-operation.png" alt="WCF PUT Operation Example" />
+</body>
+</html>
